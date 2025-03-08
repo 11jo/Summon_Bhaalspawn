@@ -1,4 +1,4 @@
-@0    = ~Pssst... êtes-vous intéressé par une offre exceptionnelle ?~
+@0    = ~Pssst... êtes-vous intéressé par une offre exceptionnelle ?~ ~Pssst... êtes-vous intéressée par une offre exceptionnelle ?~
 @1    = ~Que manigancez-vous ?~
 @2    = ~Mère m'a toujours dit de ne jamais écouter les voleurs.~
 @3    = ~Je vous écoute.~
@@ -12,8 +12,8 @@
 @11   = ~Des manigances ? Vous êtes bien suspicieux. C'est quelque chose que nous n'apprécions pas par ici. Vous voulez en savoir plus ou pas.~ ~Des manigances ? Vous êtes bien suspicieuse. C'est quelque chose que nous n'apprécions pas par ici. Vous voulez en savoir plus ou pas.~
 @12   = ~Alors dites-nous en plus !~
 @13   = ~C'est peut-être mieux que je ne sache pas.~
-@14   = ~Comme vous-voulez... vous ne savez pas à coté de quoi vous passer.~
-@15   = ~Je suis récemment entré en possession d'un parchemin rare et puissant grâce à mes... comment dire... contacts. Il appartenait à un mage qui n'en aura plus besoin, c'est tout ce que vous devez savoir. la plupart des gens ont pensé que ce parchemin était inutile, mais j'ai l'impression que ce ne sera pas votre cas.~
+@14   = ~Comme vous-voulez... Vous ne savez pas à côté de quoi vous passer.~
+@15   = ~Je suis récemment entré en possession d'un parchemin rare et puissant grâce à mes... Comment dire... Contacts. Il appartenait à un mage qui n'en aura plus besoin, c'est tout ce que vous devez savoir. La plupart des gens ont pensé que ce parchemin était inutile, mais j'ai l'impression que ce ne sera pas votre cas.~
 @16   = ~Que voulez-vous dire par là ?~
 @17   = ~Quand vous êtes passé devant moi, le parchemin a commencé à luire. Il a réagi à votre présence, alors il a sûrement de la valeur pour vous.~
 @18   = ~De la valeur ? Vous voulez de l'argent pour un parchemin qui brille ?~

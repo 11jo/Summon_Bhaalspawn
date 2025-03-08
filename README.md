@@ -14,7 +14,7 @@ Baldur's Gate Trilogy and EET<h3>
 
 
 **Author:** MajorTomSawyer  
-**Mod Forum:** <a href="http://www.baldursgatemods.com/forums/index.php?topic=5154.0">Summon Bhaalspawn</a><br><br>
+**Mod Forum:** <a href="https://github.com/The-Gate-Project/Summon_Bhaalspawn/discussions">Summon Bhaalspawn</a><br><br>
 
 ## 
 
@@ -53,6 +53,15 @@ This mod that adds an extra NPC (Sandra) in a very interesting way.  It also act
 - Lower cased files.
 - Added archive libiconv-1.9.2-1-src.7z with iconv license info.
 - Updated WeiDU installer to v249.
+- French translation
+- EET chapter check and  Evaluate_Buffer
+- Autotra / IconV / Handle_charset
+- Metadata for project infinity
+- Bg2 fixpack for Imoen Interdia bg2 tob
+- CD_STATE_NOTVALID instead of STATE_SLEEPING
+- Correction for sw2hds.itm and GW fonction for Item description
+- WeiduModPackagerLibrary by Argent77
+- Attempt to adapt portraits for EE
 
 ## 
 

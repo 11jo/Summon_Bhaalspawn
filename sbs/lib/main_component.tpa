@@ -137,7 +137,15 @@ COPY ~sbs/cre/sbsmess.cre~ ~override~
  *  Installing portraits  *
  * ---------------------- */
 
+	ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
+
+COPY ~sbs/%portrait%/EE~ ~override~
+
+	END ELSE BEGIN
+
 COPY ~sbs/%portrait%~ ~override~
+
+	END
 
 
 /* --------------------------------- *

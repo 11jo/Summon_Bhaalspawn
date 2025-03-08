@@ -8,7 +8,7 @@
 @7    = ~Vous... vous êtes aussi un enfant de Bhaal... mais je ne ressens pas en vous la malveillance habituelle des gens de notre famille.~ ~Vous... vous êtes aussi une enfant de Bhaal... mais je ne ressens pas la malveillance habituelle des gens de notre famille.~
 @8    = ~Tu es un enfant de Bhaal ?~ ~Tu es une enfant de Bhaal ?~
 @9    = ~Je perçois deux de mes semblables parmi vous, et aucun n'est mal intentionné. C'est très surprenant.~
-@10   = ~Oui, je fais partie de cette triste fratrie. C'est une malédiction qui me rappelle constamment mon fardeau... Bhaal ne doit jamais réapparaître à Faerun.~
+@10   = ~Oui, je fais partie de cette triste fratrie. C'est une malédiction qui me rappelle constamment mon fardeau... Bhaal ne doit jamais réapparaître à Féérune.~
 @11   = ~Pour l'instant, je dois en apprendre davantage. Qui êtes-vous ? Comment ai-je atterri ici ?~
 @12   = ~Je suis <CHARNAME>.  Je viens d'utiliser ce parchemin qui semble vous avoir invoqué.~
 @13   = ~Je vois. Un de nos frères ou une de nos sœurs a dû fabriquer ce parchemin, probablement pour attirer l'un ou l'une d'entre nous dans une embuscade. Par chance c'est vous qui l'avez utilisé.~
@@ -63,7 +63,7 @@
 @62   = ~Sandra, que vous avez rencontrée par magie, est votre sœur au même titre que Imoen. C'est une puissante guerrière qui a sa propre destinée à accomplir.~
 @63   = ~C'est mon essence qui a été volée. Tu n'es pas obligé de m'aider à la récupérer.~
 @64   = ~Tu as ta propre destinée à suivre. On devrait se séparer pour s'assurer que l'un d'entre nous est toujours là pour déjouer la prophétie.~ ~Tu as ta propre destinée à suivre. On devrait se séparer pour s'assurer que l'une d'entre nous est toujours là pour déjouer la prophétie.~
-@65   = ~Ensemble, nous ferons en sorte que Bhaal ne puisse jamais revenir à Faerun.~
+@65   = ~Ensemble, nous ferons en sorte que Bhaal ne puisse jamais revenir à Féérune.~
 @66   = ~Halte arrêtez-vous là où vous êtes...~
 @67   = ~Torm puisse guider ton épée, Paladin de Tyr. Ravi de vous rencontrer ainsi que vos compagnons.~
 @68   = ~Ha, ha, ha, cela fait longtemps qu'on ne m'a pas appelé Sir, vous pouvez m'appeler « Keldorn » tout simplement.~

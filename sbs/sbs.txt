@@ -58,10 +58,35 @@ Near Infinity
 Notepad
 Weidu
 
-V. Version History
-3
+V. Version History :
+
+v4
+- Moved *sbs.tp2* to mod top folder to support AL|EN's "Project Infinity".
+- Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
+- Commented code as much as possible.
+- Grouped portraits installations into four main `SUBCOMPONENTS`.
+- Modernized dialogues coding.
+- Replaced bcs files with baf files.
+- Spells installation: removed useless `SAY NAME2` patch.
+- Integrated <a href="http://www.shsforums.net/topic/42220-fixes-for-the-big-fixpack/page-12#entry485886">BWP Lollorian's portrait installation fix</a> that restores three missing installation English strref.
+- Proofread English and French translations (Gwendolyne).
+- Moved unused wav files into new :file_folder: "*legacy*" folder.
+- Lower cased files.
+- Added archive libiconv-1.9.2-1-src.7z with iconv license info.
+- Updated WeiDU installer to v249.
+- French translation
+- EET chapter check and  Evaluate_Buffer
+- Autotra / IconV / Handle_charset
+- Metadata for project infinity
+- Bg2 fixpack for Imoen Interdia bg2 tob
+- CD_STATE_NOTVALID instead of STATE_SLEEPING
+- Correction for sw2hds.itm and GW fonction for Item description
+- WeiduModPackagerLibrary by Argent77
+- Attempt to adapt portraits for EE
+
+v3
  - Mod traified and Spanish translation added by Lisandro of Clandlan!
-2
+v2
  - Readme overhauled.
  - Added the Sophitia soundset from the Soul Calibur games. - I *hate* silent NPCs.
  - Added additional portrait choices.
@@ -70,7 +95,7 @@ V. Version History
  - All files were organised into folders.
  - The .tp2 was overhauled to make it more readable.
 
-1.1
+v1.1
  - Windows version packaged by MTS. (Thanks CamDawg for the how-to!)
 
 VI. Special Thanks:
