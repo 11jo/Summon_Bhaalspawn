@@ -62,6 +62,7 @@ This mod that adds an extra NPC (Sandra) in a very interesting way.  It also act
 - Correction for sw2hds.itm and GW fonction for Item description
 - WeiduModPackagerLibrary by Argent77
 - Attempt to adapt portraits for EE
+- Redump SC2 Sophitia voiceover to fix soundset quality issues thanks to Graion Dilach
 
 ## 
 
