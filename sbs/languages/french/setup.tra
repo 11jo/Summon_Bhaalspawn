@@ -1,0 +1,106 @@
+@0   = ~Installer le portrait de Skie (Portrait original du mod)~
+@1   = ~Installer le portrait de Skie modifie par Plasmocat~
+@2   = ~Installer le portrait de la Paladine rouquine (Auteur inconnu)~
+@3   = ~Installer le portrait de Salma Hayek (Issu de The Portrait Portal)~
+@4   = ~Installer le portrait de Skie par Xenobia (Issu de Baldur's Goth Expansion Pack)~
+@5   = ~Summon Bhaalspawn (Sandra NPC) ~
+
+//@1   = ~N'oubliez pas d'installer au moins un des portraits, ou Sandra n'en aura pas !~
+
+
+/* ================== *
+ *  Items and spells  *
+ * ================== */
+@100 = ~Invoquer un rejeton de Bhaal~
+@101 = ~L'empreinte de Bhaal parcourt ce parchemin et <CHARNAME> ressent une certaine connexion avec lui. Créé par un enfant de Bhaal mystérieux, pour un enfant de Bhaal. Quel sera son effet ? Et qui osera l'utiliser ?~
+
+@103 = ~L'âme divine~
+@104 = ~La L'âme divine de Sandra a été imprégnée de la volonté de Tyr afin de créer cette arme puissante. Elle agit comme une épée sainte qui dissipe la magie au contact et confère également une résistance à la magie de 100 %, une protection contre tous les sorts et frappe comme une arme +10 tout en augmentant les chances de toucher et les dégâts de 10. Son seul défaut, l'épée étant une extension de l'âme de Sandra, elle ne peut exister que pendant un tour sans effets secondaires.
+
+PARAMETRES:
+
+Capacités d'équipement:
+  100 % de résistance magique
+  Résistance absolue à tous les sorts
+  Bonus de +5 aux dégâts contre les créatures chaotiques mauvaises
+  Dissipation de la magie à chaque coup.
+  1 attaque supplémentaire par round
+  Bonus à la classe d'armure : 2
+  
+THACO: +10
+Dégâts:  1D12+10
+Type de dégâts:  tranchant
+Poids:  0
+Type de dégâts: 1
+Type de compétence: épée à deux mains 
+Type:  arme à deux mains
+Force nécessaire: 14
+Utilisable par:
+ Sandra~
+@105 = ~Sandra a acquis la capacité spéciale : L'âme divine~
+
+@106 = ~Ajout d'une capacité spéciale : Soin des blessures légères~
+
+
+/* =========== *
+ *  Creatures  *
+ * =========== */
+@107 = ~Sandra~
+@108 = ~Que les dieux me protège !~ [MTS#s01]
+@109 = ~Je m'en rapproche, un pas après l'autre.~ [MTS#s02]
+@110 = ~Je ne perdrai pas espoir.~ [MTS#s03]
+@111 = ~Ne dis rien.~ [MTS#s04]
+@112 = ~Impossible.~ [MTS#s05]
+@113 = ~Je suis consciente de devoir y faire face.~ [MTS#s06]
+@114 = ~N'as tu pas un foyer où retourner toi aussi ?~ [MTS#s07]
+@115 = ~Repose-toi.~ [MTS#s08]
+@116 = ~Je ne voulais pas de ce conflit.~ [MTS#s09]
+@117 = ~Par les dieux, protégez-moi !~ [MTS#s11]
+@118 = ~Dieux, guidez moi !~ [MTS#s10]
+@119 = ~Je donnerai tout ce que j'ai.~ [MTS#s12]
+@120 = ~Pardonne-moi.~ [MTS#s13]
+@121 = ~~ [MTS#s14]
+@122 = ~~ [MTS#s15]
+@123 = ~Cela ne se peut.~ [MTS#s16]
+@124 = ~Nos prières seront entendues.~ [MTS#s17]
+/*Not used
+@125 = ~Nos prières seront entendues.~ [MTS#s18]
+@126 = ~Nos prières seront entendues.~ [MTS#s19]
+@127 = ~Nos prières seront entendues.~ [MTS#s20]
+@128 = ~Nos prières seront entendues.~ [MTS#s21]
+@129 = ~Dieux, guidez moi !~ [MTS#s22]
+@130 = ~Dieux, protégez-moi !~ [MTS#s23]
+@131 = ~Dieux, guidez moi !~ [MTS#s24]
+@132 = ~Dieux, protégez-moi !~ [MTS#s25]
+@133 = ~Dieux, guidez moi !~ [MTS#s26]
+@134 = ~Dieux, protégez-moi !~ [MTS#s27]
+*/
+@135 = ~Tu es sûr que c'est ce que tu veux ?~ [MTS#s28]
+@136 = ~C'est bon, je suis prête.~ [MTS#s29]
+@137 = ~Je vais tout donner...~ [MTS#s30]
+@138 = ~Je veux te sauver.~ [MTS#s31]
+/*Not used
+@139 = ~Je m'en rapproche, petit à petit.~ [MTS#s32]
+@140 = ~Je ne désespérerai pas.~ [MTS#s33]
+@141 = ~Nos prières seront entendues.~ [MTS#s34]
+@142 = ~Je sais bien que je vais de devoir m'en occuper.~ [MTS#s35]
+*/
+@143 = ~Arrête ça !~ [MTS#s36]
+/*Not used
+@144 = ~Pardonne-moi.~ [MTS#s37]
+*/
+@145 = ~C'est impossible !~ [MTS#s38]
+@146 = ~Ça n'est pas possible!~ [MTS#s39]
+@147 = ~Arrête ça !~ [MTS#s40]
+@149 = ~Arrête ça !~ [MTS#s41]
+@150 = ~Lorsque vous demandez à SANDRA quelles sont ses origines, elle vous parle de sa ville natale, Eauprofonde. Elle est née de deux gardes de la ville, qui lui ont transmit leur fascination pour la justice. Ses parents priaient Helm quotidiennement afin d'obtenir sa protection, de gardien à gardien. Et pourtant, SANDRA aimait se rendre au temple de Tyr.
+
+Elle finit par recevoir l'éducation d'un jeune acolyte qui lui enseigna comment devenir prêtresse, suivant ainsi les traces de ses parents. Et prêtresse elle aurait été, si à l'age de quatorze ans le malheur n'en avait décidé autrement.
+
+A la mort de son père, sa mère lui révéla le lourd secret qu'ils dissimulaient depuis sa naissance. Son père n'était pas son vrai père. SANDRA était une fille de Bhaal, le Seigneur du meurtre.
+
+La vie de SANDRA s'effondra, Elle pensait ne plus pouvoir rejoindre l'église, mais les clercs du temple lui ont offert une autre possibilité. Considérant les enfants de Bhaal comme une calamité, ils convainquirent SANDRA que ses frères et sœurs démoniaques devaient être effacés de la surface de la terre. Elle fut formée tel un paladin et apprit à utiliser ses pouvoirs afin de les éradiquer et de restaurer la justice. Et ainsi expier sa nature de rejeton de Bhaal.
+
+Elle promet qu'elle ne traque que ceux qui choisisses la voie du mal, et te met en garde, si tu t’écarte du droit chemin...~
+
+@151 = ~Messager~
