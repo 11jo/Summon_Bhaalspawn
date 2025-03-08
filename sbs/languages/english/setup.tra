@@ -1,3 +1,9 @@
+
+// gw_functions.tpa for item description
+
+@9001 = ~\([Oo]nly[ %tab%]+\)?[Uu]sable[ %tab%]+[Bb]y[ %tab%]*:~
+@9002 = ~\(Not[ %tab%]+\|Un\)[Uu]sable[ %tab%]+[Bb]y[ %tab%]*:~
+
 @0   = ~Install Skie Portrait (original mod portrait)~
 @1   = ~Install edited Skie portrait by Plasmocat~
 @2   = ~Install Redheaded Paladin portrait (unknown author)~

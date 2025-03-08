@@ -4,7 +4,7 @@ BEGIN BBHALSPW
 // -------------------------------------------------------------------------
 IF ~See("Imoen2")
 	!Dead("Imoen2")
-	!StateCheck("Imoen2",STATE_SLEEPING)
+	!StateCheck("Imoen2",CD_STATE_NOTVALID)
 	Global("ImoenBSInterject","LOCALS",1)
 	CombatCounter(0)~ THEN BEGIN ImoenInterject
 	SAY @0
@@ -13,7 +13,7 @@ END
 
 IF ~See("Imoen2")
 	!Dead("Imoen2")
-	!StateCheck("Imoen2",STATE_SLEEPING)
+	!StateCheck("Imoen2",CD_STATE_NOTVALID)
 	Global("ImoenBSInterject","LOCALS",3)
 	CombatCounter(0)~ THEN BEGIN AbilitiesTalk
 	SAY @1
@@ -135,7 +135,7 @@ IF ~Global("BSInterjects","LOCALS",28)~ THEN BEGIN Teacher
 END
 
 IF ~Global("BSInterjects","LOCALS",30)
-	GlobalLT("Chapter","GLOBAL",5)~ THEN BEGIN IrenicusBefore
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_5%)~ THEN BEGIN IrenicusBefore
 	SAY @59
 	IF ~~ THEN REPLY @60 GOTO IrenicusTaint
 	IF ~~ THEN REPLY @61 DO ~IncrementGlobal("BSBalance","GLOBAL",1)~ GOTO IrenicusJustice
@@ -144,7 +144,7 @@ IF ~Global("BSInterjects","LOCALS",30)
 END
 
 IF ~Global("BSInterjects","LOCALS",30)
-	GlobalGT("Chapter","GLOBAL",4)~ THEN BEGIN IrenicusAfter
+	GlobalGT("Chapter","GLOBAL",%bg2_chapter_4%)~ THEN BEGIN IrenicusAfter
 	SAY @64
 	IF ~~ THEN REPLY @65 DO ~IncrementGlobal("BSBalance","GLOBAL",1)~ GOTO IrenicusJustice
 	IF ~~ THEN REPLY @66 GOTO IrenicusTaint
@@ -197,7 +197,7 @@ IF ~Global("BSInterjects","LOCALS",44)~ THEN BEGIN FriendsBehind
 	SAY @92 = @93
 	IF ~~ THEN REPLY @94 DO ~IncrementGlobal("BSBalance","GLOBAL",1)~ GOTO WaterdeepReturn
 	IF ~~ THEN REPLY @95 GOTO ConfirmLeave
-	IF ~~ THEN REPLY @96 DO ~IncrementGlobal("BSBalance","GLOBAL",1) SetGlobal("WordSendQuest","GLOBAL",1)~ GOTO SendWord
+	IF ~~ THEN REPLY @96 DO ~IncrementGlobal("BSBalance","GLOBAL",1) SetGlobal("SBS_WordSendQuest","GLOBAL",1)~ GOTO SendWord
 	IF ~~ THEN REPLY @97 DO ~IncrementGlobal("BSBalance","GLOBAL",-1)~ GOTO FriendConcern
 	IF ~~ THEN REPLY @98 GOTO Whiner
 END

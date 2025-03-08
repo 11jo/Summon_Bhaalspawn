@@ -1,3 +1,9 @@
+
+// gw_functions.tpa for item description
+
+@9001 = ~\([Ss]ólo[ %tab%]+\)?[Pp]ermitido[ %tab%]+[Aa][ %tab%]*:~
+@9002 = ~[Nn]o[ %tab%]+[Pp]ermitido[ %tab%]+[Aa][ %tab%]*:~
+
 @0   = ~Instalar el retrato de Skie (Retrato Original del Mod)~
 @1   = ~Instalar el retrato edita de Skie por Plasmocat~
 @2   = ~Instalar el retrato de Paladin Pelirrojo (De Autor Desconocido)~
@@ -36,7 +42,7 @@ Talento Marcial: Mandoble
 Tipo: a dos manos
 Requiere: 14 de Fuerza
 
-Sólo lo puede usar:
+Sólo permitido:
  Sandra~
 @105 = ~Sandra ha ganado la habilidad: Alma Divina~
 

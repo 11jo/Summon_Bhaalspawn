@@ -1,3 +1,9 @@
+
+// gw_functions.tpa for item description
+
+@9001 = ~\([Oo]nly[ %tab%]+\)?[Uu]sable[ %tab%]+[Bb]y[ %tab%]*:~
+@9002 = ~\(Not[ %tab%]+\|Un\)[Uu]sable[ %tab%]+[Bb]y[ %tab%]*:~
+
 @0   = ~Installer le portrait de Skie (Portrait original du mod)~
 @1   = ~Installer le portrait de Skie modifie par Plasmocat~
 @2   = ~Installer le portrait de la Paladine rouquine (Auteur inconnu)~
@@ -19,22 +25,29 @@
 
 PARAMETRES:
 
-Capacités d'équipement:
-  100 % de résistance magique
-  Résistance absolue à tous les sorts
-  Bonus de +5 aux dégâts contre les créatures chaotiques mauvaises
-  Dissipation de la magie à chaque coup.
-  1 attaque supplémentaire par round
-  Bonus à la classe d'armure : 2
-  
-THACO: +10
-Dégâts:  1D12+10
-Type de dégâts:  tranchant
-Poids:  0
-Type de dégâts: 1
-Type de compétence: épée à deux mains 
-Type:  arme à deux mains
-Force nécessaire: 14
+Capacités d'équipement: 
+- Classe d'armure : +2
+- Attaque par round : +1
+- Immunité aux sorts
+- Immunité à la magie
+
+Capacités de combat : 
+- Inflige 5 points de dégâts tranchants aux créatures chaotiques mauvaises
+- Dissipation de la magie sur la cible (les armes invoquées sont toujours dissipées)
+- Guérit la débilité mentale de la cible
+- Tue instantanément les illusions (jet de sauvegarde à -4 contre la paralysie, la mort et les poisons pour annuler)
+
+TAC0 : +10
+Dégâts : 1d10 +10 (Tranchant)
+Facteur de vitesse : 1
+Type de compétence : Épée à deux mains
+Type : Arme à 2 mains
+
+Nécessite : 
+- 14 en Force
+
+Poids : 0
+
 Utilisable par:
  Sandra~
 @105 = ~Sandra a acquis la capacité spéciale : L'âme divine~

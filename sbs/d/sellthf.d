@@ -4,14 +4,14 @@ IF ~NumTimesTalkedTo(0)~ Offer
   SAY @0
   ++ @1 + Upto
   ++ @2 + NoTrust
-  ++ @3 DO ~SetGlobal("KnowBhaalScroll","LOCALS",1)~ + GoodVibes
+  ++ @3 DO ~SetGlobal("SBS_KnowBhaalScroll","LOCALS",1)~ + GoodVibes
 END
 
 IF ~HasItem("SCRLBS",Myself)~ StillGood
   SAY @4
-  + ~Global("KnowBhaalScroll","LOCALS",1) PartyGoldGT(499)~ + @5 + Purchase
-  + ~Global("KnowBhaalScroll","LOCALS",1)~ + @6 + FinalOffer
-  + ~Global("KnowBhaalScroll","LOCALS",0)~ + @7 DO ~SetGlobal("KnowBhaalScroll","LOCALS",1)~ + GoodVibes
+  + ~Global("SBS_KnowBhaalScroll","LOCALS",1) PartyGoldGT(499)~ + @5 + Purchase
+  + ~Global("SBS_KnowBhaalScroll","LOCALS",1)~ + @6 + FinalOffer
+  + ~Global("SBS_KnowBhaalScroll","LOCALS",0)~ + @7 DO ~SetGlobal("SBS_KnowBhaalScroll","LOCALS",1)~ + GoodVibes
   ++ @8 + NoTrust
 END
 
@@ -27,7 +27,7 @@ END
 
 IF ~~ Upto
   SAY @11
-  ++ @12 DO ~SetGlobal("KnowBhaalScroll","LOCALS",1)~ + GoodVibes
+  ++ @12 DO ~SetGlobal("SBS_KnowBhaalScroll","LOCALS",1)~ + GoodVibes
   ++ @13 + NoTrust
 END
 

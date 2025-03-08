@@ -474,9 +474,9 @@ IF ~True()~ THEN BEGIN Welcome
 	SAY @77
 	IF ~!IsValidForPartyDialog("BHAALSPW")~ THEN EXIT
 	IF ~IsValidForPartyDialog("BHAALSPW")
-		!Global("WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ NoMessNeed
+		!Global("SBS_WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ NoMessNeed
 	IF ~IsValidForPartyDialog("BHAALSPW")
-		Global("WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ WordQuestStart
+		Global("SBS_WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ WordQuestStart
 END
 
 IF ~~ THEN BEGIN PoliteGoodbye
@@ -491,5 +491,5 @@ END
 
 IF ~~ THEN BEGIN MessQuest2
 	SAY @80
-	IF ~~ THEN DO ~SetGlobal("WordSendQuest","GLOBAL",3) IncrementGlobal("BSBalance","GLOBAL",1)~ EXTERN BHALSPWJ WordQuest2
+	IF ~~ THEN DO ~SetGlobal("SBS_WordSendQuest","GLOBAL",3) IncrementGlobal("BSBalance","GLOBAL",1)~ EXTERN BHALSPWJ WordQuest2
 END

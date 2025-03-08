@@ -49,6 +49,8 @@ ALWAYS
 	COPY ~weidu_external/sbs/Languages/autotra/UTF8/%LANGUAGE%~				~weidu_external/sbs/Languages/autotra/%LANGUAGE%~
 	END
 
+		INCLUDE ~sbs/lib/gw_functions.tpa~
+
 END
 
 

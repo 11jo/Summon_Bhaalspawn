@@ -26,11 +26,31 @@ COPY ~sbs/itm/scrlbs.itm~ ~override~
 COPY ~sbs/itm/sw2hds.itm~ ~override~
 	SAY NAME1 @103
 	SAY NAME2 @103
-	SAY DESC @104
+  LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@104" END
+	// SAY DESC @104
+
+ACTION_IF (GAME_IS ~bg2ee eet~) BEGIN
+
+PRINT ~Item restricted to Sandra for EE~
+OUTER_SET Re_sw2hds = RESOLVE_STR_REF (@143)
+OUTER_SET use_her = RESOLVE_STR_REF (@107)
+APPEND ~ITEM_USE.2DA~ ~sw2hds   bhaalspw      %Re_sw2hds%      2           %use_her%~ UNLESS ~sw2hds~
+
+END ELSE ACTION_IF (GAME_IS ~bg2 bgt~ AND MOD_IS_INSTALLED ~SETUP-TOBEX.TP2~ ~100~) BEGIN
+
+PRINT ~Item restricted to Sandra for bg2~
+OUTER_SET Re_sw2hds = RESOLVE_STR_REF (@143)
+APPEND ~ITEM_USE.2DA~ ~sw2hds   bhaalspw      -1      2          %Re_sw2hds%~ UNLESS ~sw2hds~
+
+END
 
 COPY ~sbs/spin/spin135.spl~ ~override~
-	SAY NAME1 @103
-	SAY 0xfe @105
+          LPF ALTER_SPELL_EFFECT
+            INT_VAR
+				match_opcode  = 139
+				parameter1 =  RESOLVE_STR_REF (@105)
+            STR_VAR
+          END
 
 COPY ~sbs/spin/spinds.spl~ ~override~
 	SAY NAME1 @103
@@ -38,7 +58,12 @@ COPY ~sbs/spin/spinds.spl~ ~override~
 // Cure Light Wounds Innate Ability
 // --------------------------------
 COPY ~sbs/spin/spin130.spl~ ~override~
-	SAY 0xfe @106
+          LPF ALTER_SPELL_EFFECT
+            INT_VAR
+				match_opcode  = 139
+				parameter1 =  RESOLVE_STR_REF (@106)
+            STR_VAR
+          END
 
 
 /* ---------------------- *
@@ -91,10 +116,10 @@ COPY ~sbs/cre/bhaalspw.cre~ ~override~
 	SAY CRITICAL_MISS     @145
 	SAY TARGET_IMMUNE     @146
 	SAY INVENTORY_FULL    @147
-	SAY PICKED_POCKET     ~~
-	SAY HIDDEN_IN_SHADOWS ~~
+	WRITE_LONG PICKED_POCKET (BNOT 0x0) // SAY PICKED_POCKET     ~~
+	WRITE_LONG HIDDEN_IN_SHADOWS (BNOT 0x0) // SAY HIDDEN_IN_SHADOWS ~~
 	SAY SPELL_DISRUPTED   @149
-	SAY SET_A_TRAP        ~~
+	WRITE_LONG SET_A_TRAP (BNOT 0x0) //SAY SET_A_TRAP        ~~
 	SAY BIO               @150
 
 // Seller Thief
@@ -121,9 +146,9 @@ COPY ~sbs/%portrait%~ ~override~
 
 COMPILE ~sbs/baf/bhaalspw.baf~
 
-COMPILE EVALUATE_BUFFER ~sbs/d/bhaalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
+COMPILE ~sbs/d/bhaalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
 COMPILE ~sbs/d/sellthf.d~ USING ~weidu_external/sbs/languages/autotra/%s/sellthf.tra~
-COMPILE ~sbs/d/bbhalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bbhalspw.tra~
+COMPILE EVALUATE_BUFFER ~sbs/d/bbhalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bbhalspw.tra~
 
 
 /* ------------------- *
@@ -149,17 +174,32 @@ EXTEND_BOTTOM ~imoen2.bcs~ ~sbs/baf/appimoen.baf~
 
 // BG2 game without ToB
 // --------------------
-APPEND ~pdialog.2da~ ~bhaalspw bhalspwp bhalspwj bhalspwd  	****  	****  	****  	****~ UNLESS ~bhaalspw~ UNLESS ~25POST~
-APPEND ~interdia.2da~ ~bhaalspw bbhalspw  	****  	****~ UNLESS ~bhaalspw~ UNLESS ~25POST~
+APPEND ~pdialog.2da~ ~bhaalspw bhalspwp bhalspwj bhalspwd~ UNLESS ~bhaalspw~ UNLESS ~25POST~
+
+APPEND ~interdia.2da~ ~bhaalspw bbhalspw~ UNLESS ~bhaalspw~ UNLESS ~25FILE~
 
 // ToB based game
 // --------------
 APPEND ~pdialog.2da~ ~bhaalspw bhalspwp bhalspwj bhalspwd bhal25p bhal25j bhal25d bhal25~ UNLESS ~bhaalspw~ IF ~25POST~
-APPEND ~interdia.2da~ ~bhaalspw bbhalspw bbhalspw~ UNLESS ~bhaalspw~ IF ~25POST~
+
+APPEND ~interdia.2da~ ~bhaalspw bbhalspw bbhalspw~ UNLESS ~bhaalspw~ IF ~25FILE~
 
 // ----------------------------------------------------------------------
 // Append rows to Interdia.2da so Interact Dialogs work
-
+/*
 APPEND ~interdia.2da~
-~Imoen2	BImoen2  	****  	****~
+~Imoen2	BImoen2~
 UNLESS ~Imoen2~
+*/
+
+// From Bg2Fixpack
+ACTION_IF GAME_IS ~bg2~ AND NOT GAME_INCLUDES ~tob~ THEN BEGIN
+
+  APPEND ~interdia.2da~ ~IMOEN       BIMOEN2~ UNLESS ~[ %TAB%]BIMOEN2[ %TAB%%LNL%%MNL%%WNL%]~ // fixes SoA version
+  
+END ELSE ACTION_IF GAME_IS ~bg2~ AND GAME_INCLUDES ~tob~ BEGIN
+
+  COPY_EXISTING ~interdia.2da~ ~override~
+    SET_2DA_ENTRY 17 1 2 ~BIMOEN2~ // fixes ToB version
+    BUT_ONLY
+END

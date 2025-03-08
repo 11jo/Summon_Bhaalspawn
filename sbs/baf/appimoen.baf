@@ -6,7 +6,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("ImoenGainsAbilities","GLOBAL",2)
-		SetGlobalTimer("NextAbility","GLOBAL",TWO_DAYS)
+		SetGlobalTimer("SBS_NextAbility","GLOBAL",TWO_DAYS)
 		Interact([PC])
 END
 
@@ -14,7 +14,7 @@ IF
 	InParty(Myself)
 	Global("BodhiDead","GLOBAL",1)
 	Global("ImoenGainsAbilities","GLOBAL",3)
-	GlobalTimerExpired("NextAbility","GLOBAL")
+	GlobalTimerExpired("SBS_NextAbility","GLOBAL")
 	PartyRested()
 THEN
 	RESPONSE #100
