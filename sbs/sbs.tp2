@@ -1,56 +1,107 @@
-BACKUP ~sbs/backup~// where should we put backup files?
+BACKUP ~weidu_external/sbs/backup~// where should we put backup files?
 // where should tell the user to send email if something goes wrong?
 AUTHOR ~majortomsawyer@hotmail.com~
 
-// ALWAYS
-//  AT_INTERACTIVE_EXIT ~VIEW SBS/SBS.txt~
-// END
+README ~sbs/sbs.txt~ //  AT_INTERACTIVE_EXIT ~VIEW SBS/SBS.txt~
 
-AUTO_TRA ~sbs\language\%s~ // This will tell WeiDU the folder where the D's are stored.
+VERSION ~4~
+
+ALWAYS
+
+	ACTION_IF GAME_IS ~eet~ BEGIN
+			OUTER_SET bg2_chapter = 12
+	END ELSE BEGIN
+			OUTER_SET bg2_chapter = 0
+	END
+			OUTER_FOR (i = 1 ; i <= 10 ; ++i) BEGIN
+			OUTER_SET bg2_chapter = bg2_chapter + 1
+			OUTER_SPRINT name_source ~bg2_chapter_%i%~
+			OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+	END
+
+    //Copies tra files into the autotra-folder (to leave the originals untouched)
+    DEFINE_ACTION_FUNCTION autotra_workaround BEGIN
+      COPY ~sbs/Languages/english~			~weidu_external/sbs/Languages/autotra/%LANGUAGE%~
+      COPY ~sbs/Languages/%LANGUAGE%~			~weidu_external/sbs/Languages/autotra/%LANGUAGE%~
+    END
+
+    LAF autotra_workaround END
+
+// Convert tra files in UTF8 if EE and let them in ANSI if oBG
+
+	ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
+//  ACTION_DEFINE_ARRAY sbs_noconvert BEGIN END
+
+		ACTION_DEFINE_ARRAY sbs_reload BEGIN setup END
+
+			LAF HANDLE_CHARSETS
+				INT_VAR
+				infer_charsets = 1
+				STR_VAR
+				tra_path = EVAL ~weidu_external/sbs/Languages/autotra~
+				out_path = EVAL ~weidu_external/sbs/Languages/autotra/UTF8~
+				iconv_path = ~sbs/Languages/autotra/iconv~
+				// noconvert_array = sbs_noconvert
+				reload_array = sbs_reload
+			END
+
+	// UTF8 only
+	COPY ~weidu_external/sbs/Languages/autotra/UTF8/%LANGUAGE%~				~weidu_external/sbs/Languages/autotra/%LANGUAGE%~
+	END
+
+END
+
+
+AUTO_TRA ~weidu_external/sbs/languages/autotra/%s~ // This will tell WeiDU the folder where the D's are stored.
 
 LANGUAGE ~English~
          ~english~
-         ~sbs\language\english\setup.tra~
+         ~sbs/languages/english/setup.tra~
 
 // This would be the new stuff. As you can see it's only adding a few new lines to tell WeiDU where it can find the .tra files.
 
 LANGUAGE ~Castellano (Traduccion por Lisandro para Clandlan - www.clandlan.net)~ 
          ~spanish~ 
-         ~sbs\language\spanish\setup.tra~ 
+         ~sbs/languages/spanish/setup.tra~ 
+
+LANGUAGE ~Francais~ 
+         ~french~ 
+         ~sbs/languages/french/setup.tra~ 
 
 
 /* ================================================= *
  *  Summon Bhaalspawn - Sandra NPC (main component)  *
  * ================================================= */
+ 
 BEGIN @0                                           // ~Install Skie Portrait (original mod portrait)~
 SUBCOMPONENT @5                                    // ~Summon Bhaalspawn (Sandra NPC)~
 
 OUTER_SET portrait = 0
-INCLUDE ~sbs\lib\main_component.tpa~ 
+INCLUDE ~sbs/lib/main_component.tpa~ 
 
 
 BEGIN @1                                           // ~Install edited Skie portrait by Plasmocat~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 1
-INCLUDE ~sbs\lib\main_component.tpa~ 
+INCLUDE ~sbs/lib/main_component.tpa~ 
 
 
 BEGIN @2                                           // ~Install Redheaded Paladin portrait (unknown author)~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 2
-INCLUDE ~sbs\lib\main_component.tpa~ 
+INCLUDE ~sbs/lib/main_component.tpa~ 
 
 BEGIN @3                                           // ~Install Salma Hayek portrait (from The Portrait Portal)~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 3
-INCLUDE ~sbs\lib\main_component.tpa~ 
+INCLUDE ~sbs/lib/main_component.tpa~ 
 
 
 BEGIN @4                                           // ~Install edited Skie portrait by Xenobia (from the Baldur's Goth Expansion Pack)~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 4
-INCLUDE ~sbs\lib\main_component.tpa~ 
+INCLUDE ~sbs/lib/main_component.tpa~ 

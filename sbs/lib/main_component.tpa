@@ -9,7 +9,6 @@ SILENT
 
 COPY ~sbs/npcs~ ~override~
 
-
 COPY ~sbs/audio~ ~override~
 
 /* ------------------ *
@@ -39,7 +38,7 @@ COPY ~sbs/spin/spinds.spl~ ~override~
 // Cure Light Wounds Innate Ability
 // --------------------------------
 COPY ~sbs/spin/spin130.spl~ ~override~
-	SAY 0xfe @6
+	SAY 0xfe @106
 
 
 /* ---------------------- *
@@ -105,8 +104,8 @@ COPY ~sbs/cre/sellthf.cre~ ~override~
 // Messenger
 // ---------
 COPY ~sbs/cre/sbsmess.cre~ ~override~
-	SAY NAME1 @51
-	SAY NAME2 @51
+	SAY NAME1 @151
+	SAY NAME2 @151
 
 
 /* ---------------------- *
@@ -122,9 +121,9 @@ COPY ~sbs/%portrait%~ ~override~
 
 COMPILE ~sbs/baf/bhaalspw.baf~
 
-COMPILE ~sbs/d/bhaalspw.d~ USING ~sbs/%s/bhaalspw.tra~
-COMPILE ~sbs/d/sellthf.d~ USING ~sbs/%s/sellthf.tra~
-COMPILE ~sbs/d/bbhalspw.d~ USING ~sbs/%s/bbhalspw.tra~
+COMPILE EVALUATE_BUFFER ~sbs/d/bhaalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
+COMPILE ~sbs/d/sellthf.d~ USING ~weidu_external/sbs/languages/autotra/%s/sellthf.tra~
+COMPILE ~sbs/d/bbhalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bbhalspw.tra~
 
 
 /* ------------------- *
@@ -133,7 +132,7 @@ COMPILE ~sbs/d/bbhalspw.d~ USING ~sbs/%s/bbhalspw.tra~
 
 // Extend the bottom of ar0300 so the thief appears in the docks district
 // ----------------------------------------------------------------------
-EXTEND_BOTTOM ~ar0300.bcs~ ~sbs/baf/ar300.baf~
+EXTEND_BOTTOM ~ar0300.bcs~ ~sbs/baf/ar0300.baf~
 
 // Extend the bottom of ar0903 so the messenger appears in the Radiant Heart Headquarters
 // --------------------------------------------------------------------------------------
@@ -150,8 +149,8 @@ EXTEND_BOTTOM ~imoen2.bcs~ ~sbs/baf/appimoen.baf~
 
 // BG2 game without ToB
 // --------------------
-APPEND ~pdialog.2da~ ~bhaalspw bhalspwp bhalspwj bhalspwd~ UNLESS ~bhaalspw~ UNLESS ~25POST~
-APPEND ~interdia.2da~ ~bhaalspw bbhalspw~ UNLESS ~bhaalspw~ UNLESS ~25POST~
+APPEND ~pdialog.2da~ ~bhaalspw bhalspwp bhalspwj bhalspwd  	****  	****  	****  	****~ UNLESS ~bhaalspw~ UNLESS ~25POST~
+APPEND ~interdia.2da~ ~bhaalspw bbhalspw  	****  	****~ UNLESS ~bhaalspw~ UNLESS ~25POST~
 
 // ToB based game
 // --------------
@@ -162,5 +161,5 @@ APPEND ~interdia.2da~ ~bhaalspw bbhalspw bbhalspw~ UNLESS ~bhaalspw~ IF ~25POST~
 // Append rows to Interdia.2da so Interact Dialogs work
 
 APPEND ~interdia.2da~
-~Imoen2	BImoen2~
+~Imoen2	BImoen2  	****  	****~
 UNLESS ~Imoen2~

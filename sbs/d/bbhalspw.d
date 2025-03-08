@@ -79,11 +79,11 @@ END
 
 IF ~Global("BSInterjects","LOCALS",14)~ THEN BEGIN OtherSpawn
 	SAY @31
-	IF ~GlobalGT("CHAPTER","GLOBAL",4)
+	IF ~GlobalGT("CHAPTER","GLOBAL",%bg2_chapter_4%)
 		InParty("Imoen2")~ THEN REPLY @32 GOTO Sarevok
-	IF ~GlobalGT("CHAPTER","GLOBAL",4)
+	IF ~GlobalGT("CHAPTER","GLOBAL",%bg2_chapter_4%)
 		!InParty("Imoen2")~ THEN REPLY @33 GOTO Sarevok
-	IF ~GlobalLT("CHAPTER","GLOBAL",5)~ THEN REPLY @34 GOTO Sarevok
+	IF ~GlobalLT("CHAPTER","GLOBAL",%bg2_chapter_5%)~ THEN REPLY @34 GOTO Sarevok
 	IF ~~ THEN REPLY @35 GOTO Whiner
 END
 
@@ -447,7 +447,7 @@ IF ~~ THEN BEGIN MrWilson
 END
 
 IF ~~ THEN BEGIN SuspectStory
-	SAY @162 = @163 = @164 = @165 = @166 = 167 = @168
+	SAY @162 = @163 = @164 = @165 = @166 = @167 = @168
 	IF ~~ THEN REPLY @169 GOTO SuspectStoryCont
 	IF ~~ THEN REPLY @170 GOTO StopSuspectStory
 	IF ~~ THEN REPLY @171 GOTO Whiner

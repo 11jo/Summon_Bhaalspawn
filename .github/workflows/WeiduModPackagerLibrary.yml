@@ -1,0 +1,245 @@
+# Copyright (c) 2024 Argent77
+
+name: WeiDU Mod Package Builder (core)
+
+on:
+  workflow_call:
+    inputs:
+      # Determines the resulting archive format.
+      # Supported values: iemod, windows, linux, macos, multi
+      type:
+        description: 'The mod package type'
+        required: false
+        type: string
+        default: 'iemod'
+
+      # Determines the architecture of the included setup binary.
+      # Supported values: amd64, x86, x86-legacy
+      architecture:
+        description: 'Architecture of the included setup binary'
+        required: false
+        type: string
+        default: 'amd64'
+
+      # Suffix to add to the mod package filename.
+      # Supported values: version, none. Anything else is treated as a literal string.
+      # - version: Uses the VERSION definition of the tp2 file of the mod if available.
+      # - none:    Indicates that no version suffix should be added.
+      suffix:
+        description: 'Version suffix added to the mod package name'
+        required: false
+        type: string
+        default: 'version'
+
+      # An arbitrary string that will be appended after the package base name.
+      # This can be used to further specialize a package name (e.g. when providing packages for
+      # different architectures for the same platform).
+      extra:
+        description: 'A fixed string that is appended after the package base name, but before a version string'
+        required: false
+        type: string
+        default: ''
+
+      # This parameter defines the mod package base name.
+      # Supported types: tp2, ini. Anything else is treated as a literal string.
+      # - tp2: Uses the tp2 filename as base for generating the mod package base name.
+      # - ini: Fetches the "name" definition from the associated Project Infinity metadata ini file.
+      #        Falls back to "tp2" if not available.
+      naming:
+        description: 'Defines the base name for the mod package.'
+        required: false
+        type: string
+        default: 'tp2'
+
+      # This parameter defines the tp2 filename of the mod to include in the mod package.
+      # Specifying this option is only useful if a project contains multiple mods
+      # (e.g. EET, EET_end, EET_gui).
+      tp2_name:
+        description: 'Include only mod that matches the specified tp2 filename.'
+        required: false
+        type: string
+        default: ''
+
+      # WeiDU version to use for the setup binaries for platform-specific zip archives.
+      # Specify "latest" to use the latest WeiDU version, or a specific WeiDU version.
+      # Currently supported versions: 246 or later.
+      weidu_version:
+        description: 'Specifies the WeiDU version to include in platform-specific zip archives.'
+        required: false
+        type: string
+        default: 'latest'
+
+      # The prefix string to use for Windows-specific zip archive names.
+      prefix_windows:
+        description: 'Prefix for the mod package name that is used for the Windows-specific zip archive.'
+        required: false
+        type: string
+        default: 'win'
+
+      # The prefix string to use for Linux-specific zip archive names.
+      prefix_linux:
+        description: 'Prefix for the mod package name that is used for the Linux-specific zip archive.'
+        required: false
+        type: string
+        default: 'lin'
+
+      # The prefix string to use for macOS-specific zip archive names.
+      prefix_macos:
+        description: 'Prefix for the mod package name that is used for the macOS-specific zip archive.'
+        required: false
+        type: string
+        default: 'mac'
+
+      # Defines the format of the mod package name (without file extension).
+      # It supports placeholder variables that can be placed into individual groups together with
+      # optional literal strings to form the resulting package name.
+      # Groups are delimited by angle brackets (<group content>).
+      # Placeholder variables are delimited by percentage signs (%placeholder%).
+      # Any characters outside of groups are preserved in the resulting mod package name.
+      # A group is discarded completely if the placeholder variables in the group are empty.
+      # A group without placeholder variables is always considered empty and will be discarded.
+      # To use percent characters literally you have to escape them with backslash characters (e.g. \%).
+      # Note that only the percentage sign is preserved. Angle brackets are considered invalid filename
+      # characters and are replaced by the standard placeholder character.
+      # Supported placeholder variables:
+      # type        Specifies the package type (as defined by the "type" parameter).
+      # arch        Specifies the architecture of the WeiDU binary (as defined by the "arch" parameter).
+      #             This variable is empty for iemod package types.
+      # os_prefix   Specifies the platform-specific prefix (as defined by "prefix_win", "prefix_lin", and
+      #             "prefix_mac"). This variable is empty for "iemod" and "multi" package types.
+      # base_name   Specifies the base name of the mod package without any prefix or suffix (as defined by
+      #             the "naming" parameter).
+      # extra       Specifies the content of the "extra" parameter.
+      # version     Specifies the version string (as defined by the "suffix" parameter).
+      # Unsupported placeholder variables are resolved to empty strings.
+      name_fmt:
+        description: 'Defines the format of the mod package name (without file extension).'
+        required: false
+        type: string
+        default: '<%os_prefix%-><%base_name%><-%extra%><-%version%>'
+
+      # Defines the list of platforms for which setup binaries should be included in multi-platform mod packages.
+      # Individual platforms are separated by colons (:). Package type is treated as a regular platform-specific
+      # zip archive if only a single platform is specified.
+      # Supported platforms: linux, macos, windows
+      multi_platforms:
+        description: 'Defines the list of platforms for which setup binaries should be included in multi-platform mod packages.'
+        required: false
+        type: string
+        default: 'linux:macos:windows'
+
+      # Whether setup scripts in multi-platform mod packages should auto-update the WeiDU binary.
+      multi_autoupdate:
+        description: 'Specifies whether to enable or disable the WeiDU auto-update feature in setup scripts of multi-platform zip archives.'
+        required: false
+        type: boolean
+        default: true
+
+      # Indices whether duplicate files which only differ in case should be preserved when found in the same folder of the mod.
+      # This can be useful on Linux where filesystems are case-sensitive by default. Otherwise, duplicate files with the
+      # oldest modification date are removed.
+      case_sensitive:
+        description: 'Specifies whether duplicate files which only differ in case should be preserved when found in the same folder of the mod.'
+        required: false
+        type: boolean
+        default: false
+
+      # Specifies whether version strings should be "beautified".
+      # When enabled then:
+      # - Version numbers are prefixed with a lowercased "v"
+      # - A capital letter "V" prefix is lowercased
+      # - Whitespace between "v" and the version number is removed
+      beautify:
+        description: 'Specifies whether version strings in mod package names should be "beautified".'
+        required: false
+        type: boolean
+        default: true
+
+      # Specifies whether the mod package filename should be lowercased.
+      lower_case:
+        description: 'Specifies whether all letters in the mod package filename should be lowercased.'
+        required: false
+        type: boolean
+        default: false
+
+      # Specifies whether submodules defined in the repository should be checked out. Supported values: false, true, recursive
+      include_submodules:
+        description: 'Specifies whether submodules defined in the repository should be checked out. Supported values: false, true, recursive'
+        required: false
+        type: string
+        default: 'false'
+
+    outputs:
+      # Name of the created mod package.
+      weidu_mod_package:
+        description: 'Name of the created mod package'
+        value: ${{ jobs.packager.outputs.weidu_mod_package }}
+
+jobs:
+  packager:
+    if: github.ref_type == 'tag' || github.event.release.tag_name
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    outputs:
+      weidu_mod_package: ${{ steps.create.outputs.weidu_mod_package }}
+
+    steps:
+      - id: setup
+        name: Set up git configurations
+        run: |
+          git lfs uninstall
+          git config --global core.autocrlf false
+          git config --global core.ignorecase true
+
+      - id: prepare_repo
+        name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: ${{ inputs.include_submodules }}
+
+      - id: prepare_actions
+        name: Check out packager repository
+        uses: actions/checkout@v4
+        with:
+          repository: InfinityTools/WeiduModPackagerLibrary
+          path: .weidu_packager
+          sparse-checkout: dist
+
+      - id: setup_actions
+        name: Set up environment variables for packager repository
+        run: echo "PACKAGER_PATH=$GITHUB_WORKSPACE/.weidu_packager/dist" >> $GITHUB_ENV
+
+      - id: create
+        name: Create mod package
+        run: |
+          chmod +x $PACKAGER_PATH/weidu_mod_package_builder.sh
+          $PACKAGER_PATH/weidu_mod_package_builder.sh \
+              "type=${{ inputs.type }}" \
+              "arch=${{ inputs.architecture }}" \
+              "suffix=${{ inputs.suffix }}" \
+              "weidu=${{ inputs.weidu_version }}" \
+              "extra=${{ inputs.extra }}" \
+              "naming=${{ inputs.naming }}" \
+              "tp2_name=${{ inputs.tp2_name }}" \
+              "prefix_win=${{ inputs.prefix_windows }}" \
+              "prefix_lin=${{ inputs.prefix_linux }}" \
+              "prefix_mac=${{ inputs.prefix_macos }}" \
+              "name_fmt=${{ inputs.name_fmt }}" \
+              "multi_platforms=${{ inputs.multi_platforms }}" \
+              "multi_autoupdate=${{ inputs.multi_autoupdate }}" \
+              "case_sensitive=${{ inputs.case_sensitive }}" \
+              "beautify=${{ inputs.beautify }}" \
+              "lower_case=${{ inputs.lower_case }}" || exit 1
+
+      - id: upload
+        name: Upload asset to release
+        uses: svenstaro/upload-release-action@2.9.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ steps.create.outputs.weidu_mod_package }}
+          tag: ${{ github.ref || github.event.release.tag_name }}
+          overwrite: true
