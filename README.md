@@ -63,7 +63,12 @@ This mod that adds an extra NPC (Sandra) in a very interesting way.  It also act
 - WeiduModPackagerLibrary by Argent77
 - Attempt to adapt portraits for EE
 - Redump SC2 Sophitia voiceover to fix soundset quality issues thanks to Graion Dilach
-
+- Gw_function for item description
+- Componant Summon Bhaalspawn in ToB
+	- Add Sandra to fatesp.dlg using gw_dlg_functions / GW_FIND_DLG_RESPONSE_STRING for Bg2
+	- Add Sandra to fatesp.dlg using EET_functions / EET_NPC_TRANSITION for EET
+	- Expand BHALSPW.d to add joining dialog in Pocket plane 
+	- Add 7 new dialog lines for joining dialog in Pocket plane
 ## 
 
 ##### Version 3 &nbsp;(March 21, 2010)

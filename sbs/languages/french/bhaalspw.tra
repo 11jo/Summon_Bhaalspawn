@@ -1,11 +1,11 @@
 @0    = ~Huh... quoi ?  Où suis-je ?  Que se passe-t-il ?~
 @1    = ~Qui êtes-vous ?~
 @2    = ~Alors, tu es de retour.~
-@3    = ~Rejoins-moi et découvrons nos origines.~
-@4    = ~Je suis désolé, je n'ai vraiment pas le temps.~
-@5    = ~Je serai patiente et j'attendrai ton retour.~
+@3    = ~Rejoins-moi et découvrons le mystère de nos origines.~
+@4    = ~Je suis désolé, je n'ai vraiment pas de temps à t'accorder.~
+@5    = ~Je serai patiente et j'attendrai.~
 @6    = ~Maudite progéniture de Bhaal, je vais t'envoyer en enfer.~
-@7    = ~Vous... vous êtes aussi un enfant de Bhaal... mais je ne ressens pas en vous la malveillance habituelle des gens de notre famille.~ ~Vous... vous êtes aussi une enfant de Bhaal... mais je ne ressens pas la malveillance habituelle des gens de notre famille.~
+@7    = ~Vous... vous êtes aussi un enfant de Bhaal... mais je ne ressens pas en vous la malveillance habituelle des gens de notre "famille".~ ~Vous... vous êtes aussi une enfant de Bhaal... mais je ne ressens pas la malveillance habituelle des gens de notre "famille".~
 @8    = ~Tu es un enfant de Bhaal ?~ ~Tu es une enfant de Bhaal ?~
 @9    = ~Je perçois deux de mes semblables parmi vous, et aucun n'est mal intentionné. C'est très surprenant.~
 @10   = ~Oui, je fais partie de cette triste fratrie. C'est une malédiction qui me rappelle constamment mon fardeau... Bhaal ne doit jamais réapparaître à Féérune.~
@@ -79,3 +79,13 @@
 @78   = ~C'est mon devoir de servir.~
 @79   = ~Le Temple de Tyr à Eauprofonde... Oui, je le connais.  Quel est votre message ?~
 @80   = ~Il sera délivré conformément à votre demande.~
+
+// ToB joining dialog
+
+@81    = ~Maudite progéniture de Bhaal, tu m'as amenée en enfer, ta destruction ne se fera pas attendre.~
+@82    = ~<CHARNAME> ? Tu... Tu m'as amenée en enfer ?~
+@83    = ~Imoen ? <CHARNAME> ? Nous... Nous sommes en enfer ?~
+@84    = ~Et bien, d'une certaine façon... Es-tu prête à continuer notre quête ?~
+@85 = ~Convoquez Sandra, la paladine enfant de Bhaal.~
+@86    = ~Tout va bien Sandra, c'est moi...~
+@87    = ~Et bien, d'une certaine façon... Je te laisse reprendre tes esprits.~

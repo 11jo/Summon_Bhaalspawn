@@ -79,3 +79,14 @@
 @78 = ~Es mi deber serviros.~
 @79 = ~El Templo de Tyr en Aguas Profundas... Sí, estoy familiarizado con ello. ¿Qué mensaje deseáis que envíe?.~
 @80 = ~Se ha entregado de acuerdo a vuestro pedido.~
+
+// ToB joining dialog
+
+@81    = ~Evil spawn of Bhaal, you've brought me in hell, I will send you to where you belong.~
+@82    = ~<CHARNAME> ? You've... You brought me to hell?~
+@83    = ~Imoen ? <CHARNAME> ? We're... We're in hell?~
+@84    = ~Well, in a way... Are you ready to continue our quest?~
+@85 = ~Summon Sandra, the Bhaalspawn paladin.~
+@86    = ~It's all right, Sandra, it's me...~
+@87    = ~Well, in a way... I'll let you recover your senses.~
+

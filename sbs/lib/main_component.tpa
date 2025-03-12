@@ -75,6 +75,9 @@ COPY ~sbs/spin/spin130.spl~ ~override~
 COPY ~sbs/cre/bhaalspw.cre~ ~override~
 	SAY NAME1 @107
 	SAY NAME2 @107
+		PATCH_IF (GAME_IS ~bg2ee eet~) BEGIN
+	WRITE_ASCII 0x34 ~sandram~ (8) 
+		END
 //	SAY INITIAL_MEETING   ~~
  	SAY MORALE            @108
 	SAY HAPPY             @109

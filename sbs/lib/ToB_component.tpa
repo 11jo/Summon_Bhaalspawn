@@ -1,0 +1,42 @@
+
+		
+	// Variable used by FUNCTION GW_FIND_DLG_RESPONSE_STRING to find after which transition NPC will be recalled by Fate Spirit.
+			OUTER_SET fatesp_string = 65022  // Valygar // 65018 = ~Bring me Anomen, the fighter/cleric.~ - 65010 = ~Bring me Aerie, the elven cleric/mage.~
+
+
+COMPILE ~sbs/d/ToB.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
+
+/* ------------- *
+ *  Fate Spirit  *
+ * ------------- */
+ 
+ACTION_IF  GAME_IS ~eet~ BEGIN
+	INCLUDE ~EET/other/EET_functions.tph~   // functions from EET mod
+	LAF ~EET_NPC_TRANSITION~
+		INT_VAR
+			type = 2						// NPC is summon-able if met before
+			default_ToB = 1					//controls if NPC should be spawnable in ToB when the game has been started in ToB (no by default - 0)
+			// clean_ToB = 1				//cleans out existing EET code in FATESP.DLG, AR4000.BCS, AR4500.BCS for DV specified in clean_ToB_DV
+		STR_VAR
+			dv = "BHAALSPW"					// death variable of your NPC (must be the same in BG1/SoD/BG2/ToB)
+			// override_BG1 = "IMOEN_"		//name of the override NPC script in BG1
+			// override_SoD = "BDIMOEN"		//name of the override NPC script in SoD (use BG1 one if doesn't exist)
+			// override_SoA = "bhaalspw"		// override script of your NPC (SoA)
+			override_ToB = "bhaalspw"		// override script of your NPC (ToB) //name of the override NPC script in ToB (use SoA one if doesn't exist)
+			// dialog_ToB = ""		// joining dialogue for ToB//name of the dialogue file used after spawning NPC in ToB (use SoA POST dialogue or initial SoA dialogue file if doesn't exist)
+			cre_ToB = "bhaalspw"			//if type = 4 and/or default_ToB = 1 name of the ToB CRE file is needed (used to create new CRE rather than migrating existing one from SoA)
+			traFile = EVAL "weidu_external/sbs/languages/autotra/%s/BHAALSPW.tra"  //an optional TRA file that will be used for the TRA references defined in "string"
+			string = "@85"					//FATESP summon text (example: "Bring me Quayle, the gnome cleric/illusionist.") or TRA string number
+			stringPosDV = "Valygar"			//set the DV of NPC right below your response (used for sorting FATESP responses alphabetically)
+											//Aerie, Ajantis, Alora, Anomen, Baeloth, Branwen, Cernd, Coran, Corwin, Dorn, Dynaheir, Edwin, Eldoth, Faldorn, Garrick,
+											//Glint, HaerDalis, Hexxat, Imoen2, Jaheira, Jan, Kagain, Keldorn, Khalid, Kivan, Korgan, MKhiin, Mazzy, Minsc, Montaron,
+											//Nalia, Neera, Quayle, Rasaad, Safana, SharTeel, Skie, Tiax, Valygar, Viconia, Voghiln, Wilson, Xan, Xzar, Yeslick, Yoshimo
+											//variable not set (default) = NPC name appended at the end of summoning list
+			// SummonedVar = ""				//set it only if you want to use different var name than %dv%Summoned (useless in most cases)
+			// SpawnPlaneVar = ""			//set it only if you want use different var name than %dv%SpawnPlane (useless in most cases)
+			// clean_ToB_DV = "BHAALSPW"			//if clean_ToB = 1 existing code for this DV will be removed from FATESP.DLG, AR4000.BCS, AR4500.BCS
+	END
+END ELSE BEGIN
+		INCLUDE ~sbs/lib/gw_dlg_functions.tpa~
+	COMPILE EVALUATE_BUFFER ~%MOD_FOLDER%/d/fatesp.d~ USING ~weidu_external/sbs/languages/autotra/%s/BHAALSPW.tra~
+END

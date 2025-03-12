@@ -9,7 +9,8 @@
 @2   = ~Installer le portrait de la Paladine rouquine (Auteur inconnu)~
 @3   = ~Installer le portrait de Salma Hayek (Issu de The Portrait Portal)~
 @4   = ~Installer le portrait de Skie par Xenobia (Issu de Baldur's Goth Expansion Pack)~
-@5   = ~Summon Bhaalspawn (Sandra NPC) ~
+@5   = ~Summon Bhaalspawn (Sandra NPC)~
+@6   = ~Summon Bhaalspawn pour ToB~
 
 //@1   = ~N'oubliez pas d'installer au moins un des portraits, ou Sandra n'en aura pas !~
 
@@ -59,16 +60,16 @@ Utilisable par:
  *  Creatures  *
  * =========== */
 @107 = ~Sandra~
-@108 = ~Que les dieux me protège !~ [MTS#s01]
+@108 = ~Dieux, protégez-moi !~ [MTS#s01]
 @109 = ~Je m'en rapproche, un pas après l'autre.~ [MTS#s02]
 @110 = ~Je ne perdrai pas espoir.~ [MTS#s03]
 @111 = ~Ne dis rien.~ [MTS#s04]
 @112 = ~Impossible.~ [MTS#s05]
-@113 = ~Je suis consciente de devoir y faire face.~ [MTS#s06]
-@114 = ~N'as tu pas un foyer où retourner toi aussi ?~ [MTS#s07]
-@115 = ~Repose-toi.~ [MTS#s08]
+@113 = ~Je suis bien consciente que c'est Moi qui dois prendre les choses en main.~ [MTS#s06]
+@114 = ~N'as tu pas un foyer où retourner pour prendre du repos ?~ [MTS#s07]
+@115 = ~Prends tout ton temps.~ [MTS#s08]
 @116 = ~Je ne voulais pas de ce conflit.~ [MTS#s09]
-@117 = ~Par les dieux, protégez-moi !~ [MTS#s11]
+@117 = ~Dieux, protégez-moi !~ [MTS#s11]
 @118 = ~Dieux, guidez moi !~ [MTS#s10]
 @119 = ~Je donnerai tout ce que j'ai.~ [MTS#s12]
 @120 = ~Pardonne-moi.~ [MTS#s13]
@@ -117,3 +118,109 @@ La vie de SANDRA s'effondra, Elle pensait ne plus pouvoir rejoindre l'église, ma
 Elle promet qu'elle ne traque que ceux qui choisisses la voie du mal, et te met en garde, si tu t’écarte du droit chemin...~
 
 @151 = ~Messager~
+
+/* =============== *
+ *  WeiDU prompts  *
+ * =============== */
+@-1000= "Le mod %TP2_FILE_NAME% contient"
+@-1001= "composants optionnels distincts.
+Pour gagner du temps, vous pouvez choisir ce que vous souhaitez faire d'eux
+au niveau general plutot que de repondre aux questions pour chacun.
+"
+@-1002= "Que faut-il faire de tous les composants qui NE sont PAS ENCORE installes ?
+Les [I]nstaller, les [S]auter, dem[A]nder pour chacun ? "
+@-1003= "Que faut-il faire de tous les composants qui sont DEJA installes ?
+Les [R]einstaller, les s[U]pprimer, les [S]auter, dem[A]nder pour chacun ? "
+
+@-1004= "S'IL VOUS PLAIT, envoyez par e-mail le fichier"
+@-1005= "a"
+
+@-1006= "Installer le composant ["
+@-1007= "] ?
+[R]einstaller, co[N]server, s[U]pprimer ou [Q]uitter ? "
+@-1008= "] ?
+[I]nstaller, [N]e pas installer ou [Q]uitter ? "
+
+@-1009= "Entrez une partie du nom du module : "
+
+@-1010= "Reinstallation du composant ["
+@-1011= "] "
+@-1012= "Reinstallation dans la langue"
+
+@-1013= "Suppression de l'ancienne installation de ["
+@-1014= "] au prealable..."
+@-1015= "SUPPRESSION REUSSIE DE L'ANCIEN"
+
+@-1016= "Installation en cours"
+@-1017= "ERREUR pendant l'installation de ["
+@-1018= "], retour a l'etat anterieur"
+@-1019= "INSTALLATION REUSSIE"
+@-1020= "Saute"
+@-1021= "Suppression de ["
+@-1022= "] (composant #"
+@-1023= ")"
+@-1024= "SUPPRESSION REUSSIE DE ["
+
+@-1025= "] ?
+[R]einstaller, co[N]server, s[U]pprimer, [Q]uitter ou choisir un parmi :"
+@-1026= "] ?
+[N]e pas installer, [Q]uitter ou choisir un parmi :"
+@-1027= " (installe actuellement)"
+
+@-1028= "Souhaitez-vous afficher les composants de ["
+@-1029= "] ?
+[Y]Oui, [N]on ? "
+
+@-1030= "] ?
+choisir un parmi :"
+@-1031= "] ?
+[R]einstaller, co[N]server, [Q]uitter ou choisir un parmi :"
+@-1032= "INSTALLATION ECHOUEE A CAUSE D'ERREURS"
+@-1033= "INSTALLATION AVEC DES ALERTES"
+@-1034= "Souhaitez-vous afficher les instructions (ReadMe) ? [Y]Oui [N]on"
+@-1035= "Dans la langue"
+
+@-1036= "Saute le GROUPE ["
+@-1037= "] pour cause d'absence des pre-requis."
+
+@-1038= "dem[A]nder pour chaque composant, tout [S]auter, ou choisir une selection pre-definie :"
+@-1039= "dem[A]nder pour chaque composant, [R]einstaller la configuration courante, tout s[U]pprimer, tout [S]auter, ou choisir une selection pre-definie :"
+
+@-1040= "
+Veuillez choisir la langue dans laquelle vous souhaitez jouer au jeu.
+Si par la suite vous desirez jouer au jeu dans une langue differente, il vous
+faudra editer le fichier weidu.conf et reinstaller vos mods.
+"
+@-1041= "Tcheque"
+@-1042= "Allemand"
+@-1043= "Anglais"
+@-1044= "Espagnol"
+@-1045= "Francais"
+@-1046= "Italien"
+@-1047= "Polonais"
+@-1048= "Portugais"
+@-1049= "Turc"
+@-1050= "Japonais"
+@-1051= "Coreen"
+@-1052= "Chinois simplifie"
+@-1053= "Russe"
+@-1054= "Ukrainien"
+
+@-1060= "
+Ce jeu est disponible en plusieurs langues mais WeiDU ne sait pas laquelle a ete choisie quand ce mod a ete installe.
+
+Veuillez indiquer quelle langue du jeu a ete utilisee quand vous avez installe ce mod. Votre choix servira jusqu'a ce que WeiDU s'arrete mais ne sera pas memorise.
+"
+@-1061= "
+Utilisation de"
+@-1062= " et "
+
+@-1063= "INSTALLATION ABANDONNEE"
+@-1064= "Abandon de l'installation de ["
+@-1065= "], retour a l'etat anterieur"
+
+
+
+
+
+

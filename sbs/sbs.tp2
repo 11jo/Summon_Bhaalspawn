@@ -76,6 +76,8 @@ LANGUAGE ~Francais~
  * ================================================= */
  
 BEGIN @0                                           // ~Install Skie Portrait (original mod portrait)~
+DESIGNATED 0
+LABEL ~MajorTomSawyer-sbs~
 SUBCOMPONENT @5                                    // ~Summon Bhaalspawn (Sandra NPC)~
 
 OUTER_SET portrait = 0
@@ -83,6 +85,8 @@ INCLUDE ~sbs/lib/main_component.tpa~
 
 
 BEGIN @1                                           // ~Install edited Skie portrait by Plasmocat~
+DESIGNATED 1
+LABEL ~MajorTomSawyer-sbs_portrait-1~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 1
@@ -90,12 +94,16 @@ INCLUDE ~sbs/lib/main_component.tpa~
 
 
 BEGIN @2                                           // ~Install Redheaded Paladin portrait (unknown author)~
+DESIGNATED 2
+LABEL ~MajorTomSawyer-sbs_portrait-2~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 2
 INCLUDE ~sbs/lib/main_component.tpa~ 
 
 BEGIN @3                                           // ~Install Salma Hayek portrait (from The Portrait Portal)~
+DESIGNATED 3
+LABEL ~MajorTomSawyer-sbs_portrait-3~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 3
@@ -103,7 +111,21 @@ INCLUDE ~sbs/lib/main_component.tpa~
 
 
 BEGIN @4                                           // ~Install edited Skie portrait by Xenobia (from the Baldur's Goth Expansion Pack)~
+DESIGNATED 4
+LABEL ~MajorTomSawyer-sbs_portrait-4~
 SUBCOMPONENT @5
 
 OUTER_SET portrait = 4
 INCLUDE ~sbs/lib/main_component.tpa~ 
+
+ 
+BEGIN @6
+DESIGNATED 6
+LABEL ~MajorTomSawyer-sbs_ToB~
+REQUIRE_PREDICATE	(MOD_IS_INSTALLED ~SBS.tp2~ 0) ||
+					(MOD_IS_INSTALLED ~SBS.tp2~ 1) ||
+					(MOD_IS_INSTALLED ~SBS.tp2~ 2) ||
+					(MOD_IS_INSTALLED ~SBS.tp2~ 3) ||
+					(MOD_IS_INSTALLED ~SBS.tp2~ 4) ~Requires main component~
+
+INCLUDE ~sbs/lib/ToB_component.tpa~
