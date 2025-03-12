@@ -18,7 +18,7 @@
 /* ================== *
  *  Items and spells  *
  * ================== */
-@100 = ~Invoquer un rejeton de Bhaal~
+@100 = ~Convoquer un rejeton de Bhaal~
 @101 = ~L'empreinte de Bhaal parcourt ce parchemin et <CHARNAME> ressent une certaine connexion avec lui. Créé par un enfant de Bhaal mystérieux, pour un enfant de Bhaal. Quel sera son effet ? Et qui osera l'utiliser ?~
 
 @103 = ~L'âme divine~
@@ -104,7 +104,7 @@ Utilisable par:
 @144 = ~Pardonne-moi.~ [MTS#s37]
 */
 @145 = ~C'est impossible !~ [MTS#s38]
-@146 = ~Ça n'est pas possible!~ [MTS#s39]
+@146 = ~C'est impossible !~ [MTS#s39]
 @147 = ~Arrête ça !~ [MTS#s40]
 @149 = ~Arrête ça !~ [MTS#s41]
 @150 = ~Lorsque vous demandez à SANDRA quelles sont ses origines, elle vous parle de sa ville natale, Eauprofonde. Elle est née de deux gardes de la ville, qui lui ont transmit leur fascination pour la justice. Ses parents priaient Helm quotidiennement afin d'obtenir sa protection, de gardien à gardien. Et pourtant, SANDRA aimait se rendre au temple de Tyr.

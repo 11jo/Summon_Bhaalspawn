@@ -3,6 +3,5 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("SBS_WordSendQuest","GLOBAL",2)
-		CreateCreature("SBSMESS",[320.853],4)
+		CreateCreature("SBSMESS",[848.1019],15)
 END
-

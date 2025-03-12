@@ -7,9 +7,10 @@ IF ~NumTimesTalkedTo(0)~ THEN BEGIN WhereAmI
   SAY @0
   IF ~ReputationLT(LastTalkedToBy,5)~ THEN GOTO Fight
   IF ~ReputationGT(LastTalkedToBy,4)
-      IsValidForPartyDialog("Imoen")~ THEN REPLY @1 GOTO ExplainImoen
-  IF ~ReputationGT(LastTalkedToBy,4)
-      !IsValidForPartyDialog("Imoen")~ THEN REPLY @1 GOTO Explain
+       InParty("Imoen2") InMyArea("Imoen2")~ THEN REPLY @1 GOTO ExplainImoen
+  IF ~ReputationGT(LastTalkedToBy,4) 
+  OR(2)
+  !InParty("Imoen2") !InMyArea("Imoen2")~ THEN REPLY @1 GOTO Explain
 END
 
 IF ~True()~ THEN BEGIN Restart
@@ -69,7 +70,10 @@ END
 
 IF ~~ THEN BEGIN Leave
   SAY @19
-  IF ~~ THEN DO ~EscapeArea()~ EXIT
+  IF ~~ THEN DO ~SetGlobal("SBS_WordSendQuest","GLOBAL",1)
+		FadeToColor([10.0],0)
+		Wait(2) 
+		FadeFromColor([20.0],0) MoveBetweenAreas("AR0903",[845.1068],9)~ EXIT
 END
 
 
@@ -152,6 +156,7 @@ IF ~~ THEN BEGIN TreeTalk
 	COPY_TRANS Player1 33
 END
 
+/*
 IF ~~ THEN BEGIN KeldornBanter
 	SAY @39
 	IF ~~ THEN EXTERN Keldor BhaalSpawnBanter
@@ -166,6 +171,7 @@ IF ~~ THEN BEGIN KeldornBanter3
 	SAY @41
 	IF ~~ THEN EXTERN Keldor BhaalSpawnBanter3
 END
+*/
 
 IF ~~ THEN BEGIN OisigTalk
 	SAY @42
@@ -192,33 +198,47 @@ IF ~~ THEN BEGIN RyanInterject3
 	IF ~~ THEN EXTERN KAYL2 BSInterject3
 END
 
+/*
 IF ~~ THEN BEGIN NotSoSimple
 	SAY @47
 	COPY_TRANS PPIRENI1 4
 END
+*/
 
+/*
 IF ~~ THEN BEGIN DivineRemoval
 	SAY @48
 	COPY_TRANS PPIRENI2 35
 END
+*/
 
+/*
 IF ~~ THEN BEGIN YoshimoBetrayal
 	SAY @49
 	COPY_TRANS YOSHJ 113
 END
+*/
 
+/*
 IF ~~ THEN BEGIN MoreSoul
 	SAY @50
-	IF ~!IsValidForPartyDialog("Jaheira")
-		!IsValidForPartyDialog("Minsc")
-		!IsValidForPartyDialog("Imoen2")~ THEN EXIT
-	IF ~IsValidForPartyDialog("Jaheira")~ THEN EXTERN JAHEIRAJ 480
-	IF ~!IsValidForPartyDialog("Jaheira")
-		IsValidForPartyDialog("Minsc")~ THEN EXTERN MINSCJ 176
-	IF ~!IsValidForPartyDialog("Jaheira")
-		!IsValidForPartyDialog("Minsc")
-		IsValidForPartyDialog("Imoen2")~ THEN EXTERN IMOEN2J 30
+	IF ~OR(3)
+		!InParty("Jaheira") !InMyArea("Jaheira") StateCheck("Jaheira",CD_STATE_NOTVALID)
+		OR(3)
+		!InParty("Minsc") !InMyArea("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)
+		OR(3)
+		!InParty("Imoen2") !InMyArea("Imoen2") StateCheck("Imoen2",CD_STATE_NOTVALID)~ THEN EXIT
+	IF ~InParty("Jaheira") InMyArea("Jaheira") !StateCheck("Jaheira",CD_STATE_NOTVALID)~ THEN EXTERN JAHEIRAJ 480
+	IF ~OR(3)
+		!InParty("Jaheira") !InMyArea("Jaheira") StateCheck("Jaheira",CD_STATE_NOTVALID)
+		InParty("Minsc") InMyArea("Minsc") !StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN EXTERN MINSCJ 176
+	IF ~OR(3)
+		!InParty("Jaheira") !InMyArea("Jaheira") StateCheck("Jaheira",CD_STATE_NOTVALID)
+		OR(3)
+		!InParty("Minsc") !InMyArea("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)
+		InParty("Imoen2") InMyArea("Imoen2") !StateCheck("Imoen2",CD_STATE_NOTVALID)~ THEN EXTERN IMOEN2J 30
 END
+*/
 
 IF ~~ THEN BEGIN FinalTalk
 	SAY @51
@@ -283,22 +303,22 @@ END
 // Player1
 // -------
 EXTEND_BOTTOM Player1 25
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 	    Global("BhaalSpawnHellTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnHellTalk","GLOBAL",1)~ EXTERN BHALSPWJ HellTalk
 END
 
 EXTEND_BOTTOM Player1 5
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 	    Global("BhaalSpawnAvatarTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnAvatarTalk","GLOBAL",1)~ EXTERN BHALSPWJ AvatarAppearsTalk
 END
 
 EXTEND_BOTTOM Player1 16
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 	    Global("BhaalSpawnIrenicusDead","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnIrenicusDead","GLOBAL",1)~ EXTERN BHALSPWJ IrenicusDead
 END
 
 EXTEND_BOTTOM Player1 33
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BhaalSpawnTreeTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnTreeTalk","GLOBAL",1)~ GOTO BhaalTreeTalk
 END
 
@@ -313,12 +333,37 @@ END
 
 // Keldorn
 // -------
+
+ADD_TRANS_TRIGGER Keldor 0 ~OR(3)
+!InParty("BHAALSPW") !InMyArea("BHAALSPW") StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ DO 0 2
+
+EXTEND_BOTTOM Keldor 0
+		IF ~~ THEN REPLY @70 DO ~SetGlobalTimer("KeldornMetPlayer","GLOBAL",FIFTY_DAYS)~ GOTO 23
+END
+/*
+// Doit être séparé de la partie précédente pour qu'ICT prennent en compte les changements ci-dessus.
+
+// Moved to Special_Keldor.d
+
+I_C_T Keldor 0 KeldornBanter
+  // == Keldor IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN @66
+  == BHALSPWJ IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN @39
+  == Keldor @67
+  == BHALSPWJ @40
+  == Keldor @68
+  == BHALSPWJ @41
+  == Keldor @69
+END
+*/
+
+/*
 APPEND Keldor
-	IF WEIGHT #-1 ~IsValidForPartyDialog("BHAALSPW")
+	IF WEIGHT #-1 ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		NumTimesTalkedTo(0)~ THEN BEGIN KeldornBhaalSpawnBanter
 		SAY @66
-		IF ~!IsValidForPartyDialog("BHAALSPW")~ THEN GOTO 0
-		IF ~IsValidForPartyDialog("BHAALSPW")~ THEN EXTERN BHALSPWJ KeldornBanter
+		IF ~OR(3)
+!InParty("BHAALSPW") !InMyArea("BHAALSPW") StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN GOTO 0
+		IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN EXTERN BHALSPWJ KeldornBanter
 	END
 
 	IF ~~ THEN BEGIN BhaalSpawnBanter
@@ -339,11 +384,12 @@ APPEND Keldor
 	END
 
 END
+*/
 
 // High Waiter Oisig
 // -----------------
 EXTEND_BOTTOM Bhoisig 9
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BhaalSpawnOisigBanter","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnOisigBanter","GLOBAL",1)~ EXTERN BHALSPWJ OisigTalk
 END
 
@@ -355,7 +401,7 @@ APPEND Bhoisig
 
 	IF ~~ THEN BEGIN SeeingEyeBanter2
 		SAY @72
-		IF ~~ THEN GOTO 11
+		COPY_TRANS Bhoisig 9
 	END
 
 END
@@ -363,7 +409,7 @@ END
 // Sir Ryan Trawl
 // --------------
 EXTEND_BOTTOM KAYL2 10
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BhaalSpawnRyanBanter","GLOBAL",0)~ THEN DO ~SetGlobal("BhaalSpawnRyanBanter","GLOBAL",1)~ EXTERN BHALSPWJ RyanInterject
 END
 
@@ -388,50 +434,75 @@ END
 
 // Main Irenicus Plot
 // ------------------
+
+INTERJECT_COPY_TRANS PPIRENI1 4 SBS_NotSoSimple1
+  == BHALSPWJ IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN @47
+END
+/*
 EXTEND_BOTTOM PPIRENI1 4
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSSimpleObjection","GLOBAL",0)~ THEN DO ~SetGlobal("BSSimpleObjection","GLOBAL",1)~ EXTERN BHALSPWJ NotSoSimple
 END
+*/
 
+
+I_C_T PPIRENI2 35 SBS_DivineRemoval1
+  == BHALSPWJ   IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN @48 
+END
+/*
 EXTEND_BOTTOM PPIRENI2 35
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSRemoveDivine","GLOBAL",0)~ THEN DO ~SetGlobal("BSRemoveDivine","GLOBAL",1)~ EXTERN BHALSPWJ DivineRemoval
 END
+*/
 
+
+INTERJECT_COPY_TRANS YOSHJ 113 SBS_YoshimoBetrayal1
+  == BHALSPWJ IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN @49
+END
+/*
 EXTEND_BOTTOM YOSHJ 113
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSYoshimoBetrayal","GLOBAL",0)~ THEN DO ~SetGlobal("BSYoshimoBetrayal","GLOBAL",1)~ EXTERN BHALSPWJ YoshimoBetrayal
 END
+*/
 
+
+INTERJECT_COPY_TRANS SUJON 14 SBS_MoreSoul1
+  == BHALSPWJ IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
+		Global("BSMoreSoul","GLOBAL",0)~ THEN @50
+END
+/*
 EXTEND_BOTTOM SUJON 14
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSMoreSoul","GLOBAL",0)~ THEN DO ~Enemy() SetGlobal("BSMoreSoul","GLOBAL",1)~ EXTERN BHALSPWJ MoreSoul
 END
+*/
 
 EXTEND_BOTTOM HELLJON 7
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSFinalTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BSFinalTalk","GLOBAL",1)~ EXTERN BHALSPWJ FinalTalk
 END
 
 EXTEND_BOTTOM HELLJON 8
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSFinalTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BSFinalTalk","GLOBAL",1)~ EXTERN BHALSPWJ FinalTalk
 END
 
 EXTEND_BOTTOM HELLJON 9
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSFinalTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BSFinalTalk","GLOBAL",1)~ EXTERN BHALSPWJ FinalTalk
 END
 
 EXTEND_BOTTOM HELLJON 10
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSFinalTalk","GLOBAL",0)~ THEN DO ~SetGlobal("BSFinalTalk","GLOBAL",1)~ EXTERN BHALSPWJ FinalTalk
 END
 
 // Viconia
 // -------
 EXTEND_BOTTOM VICONI 2
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSViconiaJoin","GLOBAL",0)~ THEN DO ~SetGlobal("BSViconiaJoin","GLOBAL",1)~ EXTERN BHALSPWJ ViconiaTalk
 END
 
@@ -445,24 +516,24 @@ END
 // Frankie, the Copper Coronet Greeter
 // -----------------------------------
 EXTEND_BOTTOM COPGREET 1
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSFrankie","GLOBAL",0)~ THEN DO ~SetGlobal("BSFrankie","GLOBAL",1)~ EXTERN BHALSPWJ FrankieTalk
 END
 
 // Hendak the Gladiator
 // --------------------
 EXTEND_BOTTOM HENDAK 4
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSHendak1","GLOBAL",0)~ THEN DO ~SetGlobal("BSHendak1","GLOBAL",1)~ EXTERN BHALSPWJ HendakTalk1
 END
 
 EXTEND_BOTTOM HENDAK 7
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSHendak2","GLOBAL",0)~ THEN DO ~SetGlobal("BSHendak2","GLOBAL",1)~ EXTERN BHALSPWJ HendakTalk2
 END
 
 EXTEND_BOTTOM HENDAK 19
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("BSHendak3","GLOBAL",0)~ THEN DO ~SetGlobal("BSHendak3","GLOBAL",1)~ EXTERN BHALSPWJ HendakTalk3
 END
 
@@ -472,10 +543,11 @@ BEGIN SBSMESS
 
 IF ~True()~ THEN BEGIN Welcome
 	SAY @77
-	IF ~!IsValidForPartyDialog("BHAALSPW")~ THEN EXIT
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~OR(3)
+!InParty("BHAALSPW") !InMyArea("BHAALSPW") StateCheck("BHAALSPW",CD_STATE_NOTVALID)~ THEN REPLY #16441 EXIT
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		!Global("SBS_WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ NoMessNeed
-	IF ~IsValidForPartyDialog("BHAALSPW")
+	IF ~InParty("BHAALSPW") InMyArea("BHAALSPW") !StateCheck("BHAALSPW",CD_STATE_NOTVALID)
 		Global("SBS_WordSendQuest","GLOBAL",2)~ THEN EXTERN BHALSPWJ WordQuestStart
 END
 

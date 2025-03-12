@@ -142,11 +142,11 @@ COPY ~sbs/cre/sbsmess.cre~ ~override~
 
 	ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
 
-COPY ~sbs/%portrait%/EE~ ~override~
+COPY ~sbs/portraits/%portrait%/EE~ ~override~
 
 	END ELSE BEGIN
 
-COPY ~sbs/%portrait%~ ~override~
+COPY ~sbs/portraits/%portrait%~ ~override~
 
 	END
 
@@ -158,6 +158,7 @@ COPY ~sbs/%portrait%~ ~override~
 COMPILE ~sbs/baf/bhaalspw.baf~
 
 COMPILE ~sbs/d/bhaalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
+COMPILE ~sbs/d/Special_Keldor.d~ USING ~weidu_external/sbs/languages/autotra/%s/bhaalspw.tra~
 COMPILE ~sbs/d/sellthf.d~ USING ~weidu_external/sbs/languages/autotra/%s/sellthf.tra~
 COMPILE EVALUATE_BUFFER ~sbs/d/bbhalspw.d~ USING ~weidu_external/sbs/languages/autotra/%s/bbhalspw.tra~
 
