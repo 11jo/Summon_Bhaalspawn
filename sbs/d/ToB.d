@@ -15,10 +15,10 @@ APPEND BHALSPW
 IF ~NumTimesTalkedTo(0) AreaCheck("AR4500")~ THEN BEGIN WhereAmI_AR4500
   SAY @0
   IF ~ReputationLT(LastTalkedToBy,5)~ THEN GOTO Fight_AR4500
-  IF ~ReputationGT(LastTalkedToBy,4)
-      IsValidForPartyDialog("Imoen")~ THEN REPLY @86 GOTO ExplainImoen_AR4500
-  IF ~ReputationGT(LastTalkedToBy,4)
-      !IsValidForPartyDialog("Imoen")~ THEN REPLY @86 GOTO Explain_AR4500
+  IF ~ReputationGT(LastTalkedToBy,4) 
+  OR(2)
+  !InParty("Imoen2") !InMyArea("Imoen2")~ THEN REPLY @86 GOTO Explain_AR4500
+  IF ~ReputationGT(LastTalkedToBy,4) InParty("Imoen2") InMyArea("Imoen2")~ THEN REPLY @86 GOTO ExplainImoen_AR4500
 END
 
 IF ~~ THEN BEGIN Fight_AR4500

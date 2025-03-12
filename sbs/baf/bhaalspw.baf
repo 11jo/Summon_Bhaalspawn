@@ -11,8 +11,11 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	GlobalGT("BSBalance","GLOBAL",10)
 	Global("GainDivineSoul","GLOBAL",0)
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
 	Reputation(Player1,20)
 	PartyRested()
 THEN
@@ -63,8 +66,11 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	Global("GainDivineSoul","GLOBAL",2)
 	RealGlobalTimerExpired("BSInterjectsTimer","GLOBAL")
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
 THEN
 	RESPONSE #100
 		RealSetGlobalTimer("BSInterjectsTimer","GLOBAL",2250)
@@ -73,11 +79,12 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	InParty("Imoen2")  // Imoen
 	RealGlobalTimerExpired("BSInterjectsTimer","GLOBAL")
 	See("Imoen2")  // Imoen
 	!Dead("Imoen2")  // Imoen
-	!StateCheck("Imoen2",STATE_SLEEPING)  // Imoen
+	!StateCheck("Imoen2",CD_STATE_NOTVALID)  // Imoen
 	Global("ImoenBSInterject","LOCALS",0)
 	CombatCounter(0)
 	!See([ENEMY])
@@ -91,6 +98,7 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	InParty("Imoen2")  // Imoen
 	Global("BodhiDead","GLOBAL",1)
 	GlobalGT("BSInterjects","LOCALS",13)
@@ -98,7 +106,7 @@ IF
 	RealGlobalTimerExpired("BSInterjectsTimer","GLOBAL")
 	See("Imoen2")  // Imoen
 	!Dead("Imoen2")  // Imoen
-	!StateCheck("Imoen2",STATE_SLEEPING)  // Imoen
+	!StateCheck("Imoen2",CD_STATE_NOTVALID)  // Imoen
 	CombatCounter(0)
 	!See([ENEMY])
 	!Range([NEUTRAL],10)
@@ -112,7 +120,10 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	GlobalLT("BSBalance","GLOBAL",-2)
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
 THEN
 	RESPONSE #100
 		SetLeavePartyDialogFile()
@@ -123,11 +134,13 @@ END
 
 IF
 	InParty(Myself)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
 	GlobalLT("BSWhiner","LOCALS",3)
 	RealGlobalTimerExpired("BSInterjectsTimer","GLOBAL")
 	!AreaType(DUNGEON)
 	!AreaCheck("AR1300")  // Forteresse de'Arnise
 	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
 	!See([ENEMY])
 	!Range([NEUTRAL],10)
 	CombatCounter(0)
